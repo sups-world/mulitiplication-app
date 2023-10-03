@@ -4,7 +4,14 @@ const num2 = Math.ceil(Math.random() * 10);
 const questionElement = document.getElementById("question");
 const formElement = document.getElementById("form");
 const inputElement = document.getElementById("input");
-let score = 0;
+const scoreElement = document.getElementById("score");
+
+let score = JSON.parse(localStorage.getItem("score"));
+if (!score) {
+  score = 0;
+}
+
+scoreElement.innerText = `Score: ${score}`;
 
 questionElement.innerText = `What is ${num1} multiplied by ${num2} ?`;
 
@@ -17,9 +24,14 @@ formElement.addEventListener("submit", () => {
   let userAns = +inputElement.value;
   if (userAns === correctAns) {
     score = score + 1;
-    console.log("here::", score);
+    updateLocalStorage();
   } else {
-    score = score - 1;
-    console.log("here n", score);
+    score--;
+    updateLocalStorage();
   }
 });
+
+function updateLocalStorage() {
+  // localstorage takes strings only
+  localStorage.setItem("score", JSON.stringify(score));
+}
