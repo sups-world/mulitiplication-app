@@ -6,6 +6,8 @@ const formElement = document.getElementById("form");
 const inputElement = document.getElementById("input");
 const scoreElement = document.getElementById("score");
 
+const clrBtnElement = document.getElementById("clear-local-storage");
+
 let score = JSON.parse(localStorage.getItem("score"));
 if (!score) {
   score = 0;
@@ -19,7 +21,7 @@ const correctAns = num1 * num2;
 
 formElement.addEventListener("submit", () => {
   console.log("this is input", inputElement);
-  console.log("this is score", score);
+  //   console.log("this is score", score);
   //   type change to integer using +
   let userAns = +inputElement.value;
   if (userAns === correctAns) {
@@ -29,6 +31,14 @@ formElement.addEventListener("submit", () => {
     score--;
     updateLocalStorage();
   }
+});
+
+clrBtnElement.addEventListener("click", () => {
+  localStorage.clear();
+  score = 0;
+  scoreElement.innerText = `Score: ${score}`;
+
+  return;
 });
 
 function updateLocalStorage() {
