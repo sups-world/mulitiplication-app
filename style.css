@@ -61,3 +61,11 @@ body {
   text-align: right;
   font-size: 18px;
 }
+
+#clear-local-storage {
+  color: rgb(252, 253, 251);
+  border-radius: 6px;
+  background: rgb(105, 100, 100);
+  height: 22px;
+  width: auto;
+}
